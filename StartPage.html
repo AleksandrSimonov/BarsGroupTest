@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.0/jquery.jqgrid.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.0/css/ui.jqgrid.min.css">
+      <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--My custom styles-->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="StartPage.js"></script>
+     
+    <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+     
+    <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+
+
+</head>
+  <body>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          AddDefaultData();
+        });
+        </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+   <!--Форма заполнения контакта-->
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="col-sm-4"></div>
+              <h5 class="modal-title" id="InstitutionFormTitle">Добавить учереждение</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form  id="InstitutionForm">
+                 <input id="InstitutionId" hidden="true" value="-1">
+                    <div class="form-group row">
+                      <div class="col-sm-2"></div>
+                      <label for="Name" class="col-sm-2 col-form-label">Имя</label>
+                      <div class="col-sm-6">
+                        <input type="text" name="Name"  onchange="ValidateName(document.getElementById('Name'))" class="form-control" id="Name" required >
+                        <div class="invalid-feedback">
+                          Имя не может быть короче 3-х символов
+                        </div>
+                        <div class="valid-feedback">
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="form-group row">
+                      <div class="col-sm-2"></div>
+                      <label for="Adress" class="col-sm-2 col-form-label">Адрес</label>
+                      <div class="col-sm-6">
+                        <input type="text" name="Adress"  onchange="ValidateName(document.getElementById('Adress'))" class="form-control" id="Adress" required >
+                        <div class="invalid-feedback">
+                          Адрес не может быть короче 3-х символов
+                        </div>
+                        <div class="valid-feedback">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-2"></div>
+                      <label for="Phone" class="col-sm-2 col-form-label">Номер телефона</label>
+                      <div class="col-sm-6">
+                        <input type="text" placeholder="+7 (XXX) XXX XX-XX" class="form-control" id="Phone" onchange="ValidatePhone(document.getElementById('Phone'))">
+                            <div class="invalid-feedback">
+                              Номер телефона должен соответствовать +7 (XXX) XXX XX-XX
+                            </div>
+                            <div class="valid-feedback">
+                            </div>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-outline-secondary" data-dismiss="modal" id="submit">отмена</button>
+                <button type="button" id="InstitutionToDb" onclick="InsertOrUpdateInstitution()" class="btn btn-outline-primary" id="submit">Сохранить</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <!--Блок кнопок-->
+  <div class="container-fluid">
+
+    <div class="form-group row mt-3">
+        
+        <div class="col-2">
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onclick="AddNewInstitutionForm()">Добавить учереждение</button>
+        </div>
+      
+        <div class="col-2">
+            <button class="btn btn-outline-primary" onclick="SearchInstitution()" type="button">Обновить</button>
+        </div>
+    </div>
+
+    <!--Таблица со списком учереждений-->
+    <div class="form-group row">
+        <div class="col" id ="InstitutionTable" > 
+            <table class="table table-hover" id="InstitutionsTable" >
+                    <thead>
+                      <tr  >
+                        <th scope="col">#</th>
+                        <th contenteditable="true" scope="col">Навание</th>
+                        <th scope="col">Адрес</th>
+                        <th scope="col">Номер телефона</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                    </tbody>
+                  </table>
+        </div>
+    </div>
+    
+      </div>
+
+      <div class="modal" id="DeleteСonfirm" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ВНИМАНИЕ!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Вы действительно хотите удалить учереждение</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary">Нет</button>
+              <button type="button" class="btn btn-outline-primary" onclick="DeleteInstitution(document.getElementById('InstitutionId'))" data-dismiss="modal">Да</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
