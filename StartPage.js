@@ -24,7 +24,7 @@ function InsertOrUpdateInstitution() {
     }
 }
 
-function InsertInstitution( adress, name, phone, medicalInstitution) {
+function InsertInstitution(adress, name, phone, medicalInstitution) {
 
 
     var id = 0;
@@ -49,13 +49,13 @@ function InsertInstitution( adress, name, phone, medicalInstitution) {
 }
 function UpdateInstitution(institutionId, adress, name, phone, medicalInstitution) {
 
-medicalInstitution.forEach(function(item, index){
-    if(item.Id == institutionId){
-        item.full_name = name;
-        item.adress = adress;
-        item.phone = phone;
-    }
-});
+    medicalInstitution.forEach(function (item, index) {
+        if (item.Id == institutionId) {
+            item.full_name = name;
+            item.adress = adress;
+            item.phone = phone;
+        }
+    });
     localStorage.setItem('medicalInstitution', JSON.stringify(medicalInstitution));
 }
 function Validate() {
@@ -77,7 +77,7 @@ function ValidateName(Name) {
         Name.classList.remove('is-valid');
         return false;
     }
-    if (3 < strName.length) {
+    if (3 <= strName.length) {
         Name.classList.remove('is-invalid');
         Name.classList.add('is-valid');
         return true;
@@ -94,7 +94,7 @@ function ValidateAdress(Adress) {
         Adress.classList.remove('is-valid');
         return false;
     }
-    if (3 < strAdress.length) {
+    if (3 <= strAdress.length) {
         Adress.classList.remove('is-invalid');
         Adress.classList.add('is-valid');
         return true;
